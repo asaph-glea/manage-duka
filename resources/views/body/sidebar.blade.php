@@ -63,16 +63,16 @@
                             <li>
                                 <a href="#sidebarEcommerce" data-bs-toggle="collapse">
                                     <i class="mdi mdi-cart-outline"></i>
-                                    <span> Ecommerce </span>
+                                    <span> Employee Manage  </span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <div class="collapse" id="sidebarEcommerce">
                                     <ul class="nav-second-level">
                                         <li>
-                                            <a href="ecommerce-dashboard.html">Dashboard</a>
+                                            <a href="{{ route('all.employee') }}">All Employee</a>
                                         </li>
                                         <li>
-                                            <a href="ecommerce-products.html">Products</a>
+                                            <a href="{{ route('add.employee') }}">Add Employee</a>
                                         </li>
 
                                     </ul>
@@ -82,16 +82,34 @@
                             <li>
                                 <a href="#sidebarCrm" data-bs-toggle="collapse">
                                     <i class="mdi mdi-account-multiple-outline"></i>
-                                    <span> CRM </span>
+                                    <span> Customer Manage </span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <div class="collapse" id="sidebarCrm">
                                     <ul class="nav-second-level">
                                         <li>
-                                            <a href="crm-dashboard.html">Dashboard</a>
+                                            <a href="{{route('all.customer')}}">All Customer</a>
                                         </li>
                                         <li>
-                                            <a href="crm-contacts.html">Contacts</a>
+                                            <a href="{{route('add.customer')}}">Add Customer</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="#sidebarCrm" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-account-multiple-outline"></i>
+                                    <span> Supplier Manage </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarCrm">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="{{route('all.supplier')}}">All Supplier</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('add.supplier')}}">Add Supplier</a>
                                         </li>
                                     </ul>
                                 </div>
