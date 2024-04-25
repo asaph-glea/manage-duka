@@ -37,7 +37,6 @@ class CustomerController extends Controller
             'bank_name' => 'required|max:200', 
             'bank_branch'=> 'required|max:200', 
             'city' => 'required', 
-            'image' => 'required',  
         ],
 
         [

@@ -12,11 +12,11 @@
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <a href="{{route('add.supplier')}}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Employe</a>
+                                            <a href="{{route('add.employee')}}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Employe</a>
                                           
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">All Supplier</h4>
+                                    <h4 class="page-title">All Employee</h4>
                                 </div>
                             </div>
                         </div>     
@@ -26,7 +26,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">All Supplier</h4>
+                    <h4 class="header-title">All Employee</h4>
 
                     <table id="basic-datatable" class="table dt-responsive nowrap w-100">
                         <thead>
@@ -36,7 +36,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>ShopName</th>
+                                <th>Adress</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -50,10 +50,10 @@
                               <td>{{$item->name}}</td>
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->phone}}</td>
-                                <td>{{$item->shopname}}</td>
+                                <td>{{$item->address}}</td>
                             <td>
-                              <a href="{{ route('edit.supplier',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a> 
-                              <a href="{{ route('delete.supplier',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
+                              <a href="{{ route('edit.employee',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a> 
+                              <a href="{{ route('delete.employee',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
                               </td>
                             </tr>
                             @endforeach

@@ -115,7 +115,61 @@
                                 </div>
                             </li>
 
-      
+                            <li>
+                                <a href="#salary" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-account-multiple-outline"></i>
+                                    <span> Employee Salary </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="salary">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="{{route('add.advance.salary')}}">Add Advance Salary</a>
+                                        </li>
+                                        <li>
+                                        <a href="{{route('all.advance.salary')}}">All Advance Salary</a>
+                                        </li>
+                                        <li>
+                                        <a href="{{ route('pay.salary') }}">Pay Salary</a>
+                                        </li>
+                                        <li>
+                                        <a href="{{ route('month.salary') }}">Last Month Salary</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="#attendance" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-account-multiple-outline"></i>
+                                    <span> Employee Attendence </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="attendance">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="{{route('employee.attend.list')}}">Attendence List</a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="#category" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-account-multiple-outline"></i>
+                                    <span> Category </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="category">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="{{route('all.category')}}">All category</a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>
 
                             <li class="menu-title mt-2">Custom</li>
 
