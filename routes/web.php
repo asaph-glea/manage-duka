@@ -9,6 +9,8 @@ use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\AttendenceController;
 use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
+
 
 
 Route::get('/', function () {
@@ -84,6 +86,7 @@ Route::middleware('auth')->group(function () {
 
             
         });
+
         //Advance salaries
         Route::controller(SalaryController::class)->group(function(){
 
@@ -103,30 +106,37 @@ Route::middleware('auth')->group(function () {
             Route::get('/pay/now/salary/{id}','PayNowSalary')->name('pay.now.salary');
             Route::post('/employe/salary/store','EmployeSalaryStore')->name('employee.salary.store');
             Route::get('/month/salary','MonthSalary')->name('month.salary');
+        });
 
-            
-            });
-
-            Route::controller(AttendenceController::class)->group(function(){
-
+        //Attendance Controller
+        Route::controller(AttendenceController::class)->group(function(){
                 Route::get('/employee/attend/list','EmployeeAttendenceList')->name('employee.attend.list'); 
                 Route::get('/add/employee/attend','AddEmployeeAttendence')->name('add.employee.attend'); 
                 Route::post('/employee/attend/store','EmployeeAttendenceStore')->name('employee.attend.store');
                 Route::get('/edit/employee/attend/{date}','EditEmployeeAttendence')->name('employee.attend.edit'); 
                 Route::get('/view/employee/attend/{date}','ViewEmployeeAttendence')->name('employee.attend.view'); 
-                });
-                
-            Route::controller(CategoryController::class)->group(function(){
+        
+        });
+
+       //Category controller        
+        Route::controller(CategoryController::class)->group(function(){
 
                 Route::get('/all/category','AllCategory')->name('all.category');
                 Route::post('/store/category','StoreCategory')->name('category.store');
                 Route::get('/edit/category/{id}','EditCategory')->name('edit.category');
                 Route::post('/update/category','UpdateCategory')->name('category.update'); 
                 Route::get('/delete/category/{id}','DeleteCategory')->name('delete.category');
+        });
 
-
-                    });
-
+        //Product Controller
+        Route::controller(ProductController::class)->group(function(){
+            Route::get('/all/product','AllProduct')->name('all.product');
+            Route::get('/add/product','AddProduct')->name('add.product');
+            Route::post('/store/product','StoreProduct')->name('product.store');
+            Route::get('/edit/product/{id}','EditProduct')->name('edit.product');
+            Route::post('/update/product','UdateProduct')->name('product.update');
+            Route::get('/delete/product/{id}','DeleteProduct')->name('delete.product');
+            });
 
 }); // End User Middleware 
 
