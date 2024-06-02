@@ -68,7 +68,6 @@ class CustomerController extends Controller
     
             ]);
 
-
         } //end if
     
          $notification = array(

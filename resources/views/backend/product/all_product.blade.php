@@ -12,7 +12,9 @@
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-      <a href="{{ route('add.product') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Product </a>  
+                                            <a href="{{ route('import.product') }}" class="btn btn-info rounded-pill waves-effect waves-light">Import </a>&nbsp;&nbsp;&nbsp;
+                                            <a href="{{ route('export') }}" class="btn btn-danger rounded-pill waves-effect waves-light">Export </a> &nbsp;&nbsp;&nbsp; 
+                                            <a href="{{ route('add.product') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Product </a>  
                                         </ol>
                                     </div>
                                     <h4 class="page-title">All Product</h4>
@@ -49,13 +51,13 @@
                 <td> <img src="{{ asset($item->product_image) }}" style="width:50px; height: 40px;"> </td>
                 <td>{{ $item->product_name }}</td>
                 <td>{{ $item['category']['category_name'] }}</td>
-                <td>{{ $item['supllier']['name'] }}</td>
+                <td>{{ $item['supplier']['name'] }}</td>
                 <td>{{ $item->product_code }}</td>
                 <td>{{ $item->selling_price }}</td>
                 <td>
-<a href="{{ route('edit.product',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
-<a href="{{ route('delete.product',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
-
+                    <a href="{{ route('edit.product',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                    <a href="{{ route('barcode.product',$item->id) }}" class="btn btn-info rounded-pill waves-effect waves-light">Code</a>
+                    <a href="{{ route('delete.product',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
                 </td>
             </tr>
             @endforeach

@@ -170,27 +170,28 @@
                                     </ul>
                                 </div>
                             </li>
-
                             
-         <li>
-            <a href="#product" data-bs-toggle="collapse">
-                <i class="mdi mdi-email-multiple-outline"></i>
-                <span> Products  </span>
-                <span class="menu-arrow"></span>
-            </a>
-            <div class="collapse" id="product">
-                <ul class="nav-second-level">
-                    <li>
-                        <a href="{{ route('all.product') }}">All Product </a>
-                    </li>
-
-                     <li>
-                        <a href="{{ route('add.product') }}">Add Product </a>
-                    </li>
-
-                </ul>
-            </div>
-        </li>
+                            <li>
+                                <a href="#category" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-account-multiple-outline"></i>
+                                    <span> Products  </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="category">
+                                    <ul class="nav-second-level">
+                                    <li>
+                                        <a href="{{ route('all.product') }}">All Product </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('add.product') }}">Add Product </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('import.product') }}">Import Product </a>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            
 
 
                             <li class="menu-title mt-2">Custom</li>
@@ -198,16 +199,25 @@
                             <li>
                                 <a href="#sidebarAuth" data-bs-toggle="collapse">
                                     <i class="mdi mdi-account-circle-outline"></i>
-                                    <span> Auth Pages </span>
+                                    <span>Expense</span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <div class="collapse" id="sidebarAuth">
-                                    <ul class="nav-second-level">
-                                        <li>
-                                            <a href="auth-login.html">Log In</a>
-                                        </li>
+                                <ul class="nav-second-level">
+            <li>
+                <a href="{{ route('add.expense') }}">Add Expense</a>
+            </li>
+            <li>
+                <a href="auth-login-2.html">Today Expense</a>
+            </li>
+            <li>
+                <a href="auth-login-2.html">Monthly Expense</a>
+            </li>
+            <li>
+                <a href="auth-login-2.html">Yearly Expense</a>
+            </li>
 
-                                    </ul>
+        </ul>
                                 </div>
                             </li>
 

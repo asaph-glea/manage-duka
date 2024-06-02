@@ -9,60 +9,199 @@ use App\Models\Category;
 use App\Models\Supplier;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
-use Carbon\Carbon; 
+use Carbon\Carbon;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+use App\Exports\ProductExport;
+use Maatwebsite\Excel\Facades\Excel; 
+use App\Imports\ProductImport;
+
 
 class ProductController extends Controller
 {
+    //view allpage
    public function AllProduct(){
-
-    $product = Product::latest()->get();
-    return view('backend.product.all_product',compact('product'));
-
+        $product = Product::latest()->get();
+        return view('backend.product.all_product',compact('product'));
    } // End Method 
 
+   //view page
    public function AddProduct(){
+        $category = Category::latest()->get();
+        $supplier = Supplier::latest()->get();
+        return view('backend.product.add_product',compact('category','supplier'));
+   
+    }// End Method 
 
-    $category = Category::latest()->get();
-    $supplier = Supplier::latest()->get();
-    return view('backend.product.add_product',compact('category','supplier'));
-   }// End Method 
-
+    //store products
    public function StoreProduct(Request $request){ 
 
-    if ($request ->file('image')) {
-        $manager = new ImageManager(new Driver());
-        $name_gen = hexdec(uniqid()).'.'.$request ->file('image')->getClientOriginalExtension();
-        $img = $manager->read($request ->file('image'));
-        $img = $img->resize(300,300);
-        $img->toJpeg(80)->save(base_path('public/upload/product/'.$name_gen));
-        $save_url = 'upload/product/'.$name_gen;
+    $pcode = IdGenerator::generate(['table' => 'products','field' => 'product_code','length' => 4, 'prefix' => 'PC' ]);
+
+
+        if ($request ->file('product_image')) {
+
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()).'.'.$request ->file('product_image')->getClientOriginalExtension();
+            $img = $manager->read($request ->file('product_image'));
+            $img = $img->resize(300,300);
+            $img->toJpeg(80)->save(base_path('public/upload/product/'.$name_gen));
+            $save_url = 'upload/product/'.$name_gen;
+
+            Product::insert([
+
+                'product_name' => $request->product_name,
+                'category_id' => $request->category_id,
+                'supplier_id' => $request->supplier_id,
+                'product_code' => $pcode,
+                'product_garage' => $request->product_garage,
+                'product_store' => $request->product_store,
+                'buying_date' => $request->buying_date,
+                'expire_date' => $request->expire_date,
+                'buying_price' => $request->buying_price,
+                'selling_price' => $request->selling_price,
+                'product_image' => $save_url,
+                'created_at' => Carbon::now(), 
+    
+            ]);
+
+        } //end if
+
 
         
-    Product::insert([
+        $notification = array(
+            'message' => 'Product Inserted Successfully',
+            'alert-type' => 'success'
+        );
 
-        'product_name' => $request->product_name,
-        'category_id' => $request->category_id,
-        'supplier_id' => $request->supplier_id,
-        'product_code' => $request->product_code,
-        'product_garage' => $request->product_garage,
-        'product_store' => $request->product_store,
-        'buying_date' => $request->buying_date,
-        'expire_date' => $request->expire_date,
-        'buying_price' => $request->buying_price,
-        'selling_price' => $request->selling_price,
-        'product_image' => $save_url,
-        'created_at' => Carbon::now(), 
+        return redirect()->route('all.product')->with($notification); 
 
-    ]);
-
-    } //end if
-    
-     $notification = array(
-        'message' => 'Product Inserted Successfully',
-        'alert-type' => 'success'
-    );
-
-    return redirect()->route('all.product')->with($notification); 
     } // End Method 
 
+    public function UpdateProduct(Request $request){
+
+        $product_id = $request->id;
+
+        if ($request->file('product_image')) {
+            
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()).'.'.$request ->file('product_image')->getClientOriginalExtension();
+            $img = $manager->read($request ->file('product_image'));
+            $img = $img->resize(300,300);
+            $img->toJpeg(80)->save(base_path('public/upload/product/'.$name_gen));
+            $save_url = 'upload/product/'.$name_gen;
+
+        Product::findOrFail($product_id)->update([
+
+            'product_name' => $request->product_name,
+            'category_id' => $request->category_id,
+            'supplier_id' => $request->supplier_id,
+            'product_code' => $request->product_code,
+            'product_garage' => $request->product_garage,
+            'product_store' => $request->product_store,
+            'buying_date' => $request->buying_date,
+            'expire_date' => $request->expire_date,
+            'buying_price' => $request->buying_price,
+            'selling_price' => $request->selling_price,
+            'product_image' => $save_url,
+            'created_at' => Carbon::now(), 
+
+        ]);
+
+         $notification = array(
+            'message' => 'Product Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.product')->with($notification); 
+             
+        } else{
+
+            Product::findOrFail($product_id)->update([
+
+            'product_name' => $request->product_name,
+            'category_id' => $request->category_id,
+            'supplier_id' => $request->supplier_id,
+            'product_code' => $request->product_code,
+            'product_garage' => $request->product_garage,
+            'product_store' => $request->product_store,
+            'buying_date' => $request->buying_date,
+            'expire_date' => $request->expire_date,
+            'buying_price' => $request->buying_price,
+            'selling_price' => $request->selling_price, 
+            'created_at' => Carbon::now(), 
+
+        ]);
+
+         $notification = array(
+            'message' => 'Product Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.product')->with($notification); 
+
+        } // End else Condition  
+
+
+    } // End Method 
+
+
+    //Edit Product
+    public function EditProduct($id){
+        $product = Product::findOrFail($id);
+        $category = Category::latest()->get();
+        $supplier = Supplier::latest()->get();
+        return view('backend.product.edit_product',compact('product','category','supplier'));
+
+    } // End Method 
+
+
+
+    //Delete Product
+    public function DeleteProduct($id){
+
+        $product_img = Product::findOrFail($id);
+        $img = $product_img->product_image;
+        unlink($img);
+
+        Product::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Product Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification); 
+
+    } // End Method 
+
+    public function BarcodeProduct($id){
+
+        $product = Product::findOrFail($id);
+        return view('backend.product.barcode_product',compact('product'));
+
+    }// End Method
+
+    public function ImportProduct(){
+
+        return view('backend.product.import_product');
+
+    }// End Method 
+
+    public function Export(){
+
+        return Excel::download(new ProductExport,'products.xlsx');
+
+    }// End Method 
+    public function Import(Request $request){
+        
+        Excel::import(new ProductImport, $request->file('import_file'));
+
+        $notification = array(
+            'message' => 'Product Imported Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification); 
+
+    }
 }

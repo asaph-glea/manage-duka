@@ -13,8 +13,7 @@
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Add Product</a></li>
-                                            
+                                            <li class="breadcrumb-item"><a href="{{ route('all.product') }}" class="btn btn-blue rounded-pill waves-effect waves-light">Back</a></li>
                                         </ol>
                                     </div>
                                 </div>
@@ -29,15 +28,10 @@
 <div class="card">
     <div class="card-body">
                                     
-                                      
-                                         
-                                           
-
-    <!-- end timeline content-->
 
     <div class="tab-pane" id="settings">
-        <form id="myForm" method="post" action="{{ route('product.store')}}" enctype="multipart/form-data">
-            
+
+        <form  method="post" action="{{ route('product.store')}}" enctype="multipart/form-data">
         	@csrf
 
             <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Add Product</h5>
@@ -48,8 +42,8 @@
                     <div class="col-md-6">
                         <div class="form-group mb-3">
                             <label for="firstname" class="form-label">Product Name</label>
-                            <input type="text" name="product_name" class="form-control"   >
-                        
+                            <input type="text" name="product_name" class="form-control" >
+
                         </div>
                     </div>
 
@@ -83,13 +77,13 @@
 
 
 
-                            <div class="col-md-6">
-                        <div class="form-group mb-3">
-                            <label for="firstname" class="form-label">Product Code    </label>
-                            <input type="text" name="product_code" class="form-control "   >
-                            
-                        </div>
-                        </div>
+                        <!-- <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="firstname" class="form-label">Product Code    </label>
+                                <input type="text" name="product_code" class="form-control " >
+                                
+                            </div>
+                        </div> -->
 
 
                     
@@ -200,9 +194,6 @@
                 supplier_id: {
                     required : true,
                 }, 
-                product_code: {
-                    required : true,
-                }, 
                 product_garage: {
                     required : true,
                 }, 
@@ -221,9 +212,9 @@
                 selling_price: {
                     required : true,
                 }, 
-                // product_image: {
-                //     required : true,
-                // },  
+                product_image: {
+                    required : true,
+                 },  
             },
             messages :{
                 product_name: {
@@ -234,9 +225,6 @@
                 },
                 supplier_id: {
                     required : 'Please Select Supplier',
-                },
-                product_code: {
-                    required : 'Please Enter Product Code',
                 },
                 product_garage: {
                     required : 'Please Enter Product Garage',

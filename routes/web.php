@@ -10,6 +10,8 @@ use App\Http\Controllers\Backend\AttendenceController;
 use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ExpenseController;
+
 
 
 
@@ -134,9 +136,22 @@ Route::middleware('auth')->group(function () {
             Route::get('/add/product','AddProduct')->name('add.product');
             Route::post('/store/product','StoreProduct')->name('product.store');
             Route::get('/edit/product/{id}','EditProduct')->name('edit.product');
-            Route::post('/update/product','UdateProduct')->name('product.update');
+            Route::post('/update/product','UpdateProduct')->name('product.update');
             Route::get('/delete/product/{id}','DeleteProduct')->name('delete.product');
-            });
+            Route::get('/barcode/product/{id}','BarcodeProduct')->name('barcode.product');
+            Route::get('/import/product','ImportProduct')->name('import.product');
+            Route::get('/export','Export')->name('export');
+            Route::post('/import','Import')->name('import');
+
+
+        });
+
+        Route::controller(ExpenseController::class)->group(function(){
+
+            Route::get('/add/expense','AddExpense')->name('add.expense');
+            Route::post('/store/expense','StoreExpense')->name('expense.store');
+
+        });
 
 }); // End User Middleware 
 
