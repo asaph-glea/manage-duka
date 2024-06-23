@@ -54,9 +54,18 @@
                                     <i class="mdi mdi-view-dashboard-outline"></i>
                                     <span> Dashboards </span>
                                 </a>
-                           
                             </li>
 
+                            
+           <li>
+            <a href="{{ route('pos') }}">
+                <span class="badge bg-pink float-end">Hot</span>
+               <i class="mdi mdi-view-dashboard-outline"></i>
+                <span> POS </span>
+            </a>
+        </li>
+
+        
                             <li class="menu-title mt-2">Apps</li>
 
                            
@@ -208,13 +217,13 @@
                 <a href="{{ route('add.expense') }}">Add Expense</a>
             </li>
             <li>
-                <a href="auth-login-2.html">Today Expense</a>
+                <a href="{{ route('today.expense') }}">Today Expense</a>
             </li>
             <li>
-                <a href="auth-login-2.html">Monthly Expense</a>
+                <a href="{{ route('month.expense') }}">Monthly Expense</a>
             </li>
             <li>
-                <a href="auth-login-2.html">Yearly Expense</a>
+                <a href="{{ route('year.expense') }}">Yearly Expense</a>
             </li>
 
         </ul>

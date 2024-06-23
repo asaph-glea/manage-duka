@@ -11,8 +11,7 @@ use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ExpenseController;
-
-
+use App\Http\Controllers\Backend\PosController;
 
 
 Route::get('/', function () {
@@ -150,8 +149,23 @@ Route::middleware('auth')->group(function () {
 
             Route::get('/add/expense','AddExpense')->name('add.expense');
             Route::post('/store/expense','StoreExpense')->name('expense.store');
-
+            Route::get('/today/expense','TodayExpense')->name('today.expense');
+            Route::get('/edit/expense/{id}','EditExpense')->name('edit.expense');
+            Route::post('/update/expense','UpdateExpense')->name('expense.update');        
+            Route::get('/month/expense','MonthExpense')->name('month.expense');
+            Route::get('/year/expense','YearExpense')->name('year.expense');
+                    
         });
+
+        Route::controller(PosController::class)->group(function(){
+            Route::get('/pos','Pos')->name('pos');
+            Route::post('/add-cart','AddCart');
+            Route::get('/allitem','AllItem');
+            Route::post('/cart-update/{rowId}','CartUpdate');
+            Route::get('/cart-remove/{rowId}','CartRemove');
+            Route::post('/create-invoice','CreateInvoice');
+
+           });
 
 }); // End User Middleware 
 
