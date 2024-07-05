@@ -181,12 +181,12 @@
                             </li>
                             
                             <li>
-                                <a href="#category" data-bs-toggle="collapse">
+                                <a href="#product" data-bs-toggle="collapse">
                                     <i class="mdi mdi-account-multiple-outline"></i>
                                     <span> Products  </span>
                                     <span class="menu-arrow"></span>
                                 </a>
-                                <div class="collapse" id="category">
+                                <div class="collapse" id="product">
                                     <ul class="nav-second-level">
                                     <li>
                                         <a href="{{ route('all.product') }}">All Product </a>
@@ -200,9 +200,40 @@
                                     </ul>
                                 </div>
                             </li>
-                            
 
+                            <li>
+                                <a href="#orders" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-account-multiple-outline"></i>
+                                    <span> Orders </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="orders">
+                                    <ul class="nav-second-level">
+                                    <li>
+                                        <a href="{{ route('pending.order') }}">Pending Orders </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('complete.order') }}">Complete Orders</a>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </li>
 
+                            <li>
+                                <a href="#stock" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-account-multiple-outline"></i>
+                                    <span> Stock Mananager </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="stock">
+                                    <ul class="nav-second-level">
+                                    <li>
+                                        <a href="{{ route('stock.manage') }}">Stock </a>
+                                    </li>
+                                   
+                                    </ul>
+                                </div>
+                            </li>
                             <li class="menu-title mt-2">Custom</li>
 
                             <li>

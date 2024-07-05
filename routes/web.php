@@ -12,7 +12,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\PosController;
-
+use App\Http\Controllers\Backend\OrderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -165,7 +165,23 @@ Route::middleware('auth')->group(function () {
             Route::get('/cart-remove/{rowId}','CartRemove');
             Route::post('/create-invoice','CreateInvoice');
 
-           });
+        });
+
+        
+            ///Order All Route 
+        Route::controller(OrderController::class)->group(function(){
+
+                Route::post('/final-invoice','FinalInvoice');
+            Route::get('/pending/order','PendingOrder')->name('pending.order');
+            Route::get('/order/details/{order_id}','OrderDetails')->name('order.details');
+            Route::post('/order/status/update','OrderStatusUpdate')->name('order.status.update');
+            Route::get('/complete/order','CompleteOrder')->name('complete.order');
+            Route::get('stock','StockManage')->name('stock.manage');
+                
+            
+            
+            
+        });  
 
 }); // End User Middleware 
 

@@ -98,7 +98,7 @@
 
                             <div class="col-md-6">
                         <div class="form-group mb-3">
-                            <label for="firstname" class="form-label">Product Store    </label>
+                            <label for="firstname" class="form-label">Product In Store    </label>
                             <input type="text" name="product_store" class="form-control "   >
                             
                         </div>
