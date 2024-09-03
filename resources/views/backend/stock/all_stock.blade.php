@@ -12,9 +12,15 @@
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
+                                            @if(Auth::user()->can('stock.import'))
                                             <a href="{{ route('import.product') }}" class="btn btn-info rounded-pill waves-effect waves-light">Import </a>&nbsp;&nbsp;&nbsp;
-                                            <a href="{{ route('export') }}" class="btn btn-danger rounded-pill waves-effect waves-light">Export </a> &nbsp;&nbsp;&nbsp; 
-                                            <a href="{{ route('add.product') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Product </a>  
+                                            @endif
+                                            @if(Auth::user()->can('stock.export'))
+                                            <a href="{{ route('export') }}" class="btn btn-danger rounded-pill waves-effect waves-light">Export </a> &nbsp;&nbsp;&nbsp;
+                                            @endif
+                                            @if(Auth::user()->can('stock.add'))
+                                            <a href="{{ route('add.product') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Product </a> 
+                                            @endif
                                         </ol>
                                     </div>
                                     <h4 class="page-title">All Product</h4>

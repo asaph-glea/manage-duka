@@ -13,8 +13,8 @@
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="{{route('all.employee')}}" class="btn btn-primary rounded-pill waves-effect waves-light">All Employee</a></li>
-
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Add Employee</a></li>
+                                            
                                         </ol>
                                     </div>
                                     <h4 class="page-title">Add Employee</h4>
@@ -24,15 +24,15 @@
                         <!-- end page title -->
 
 <div class="row">
-
+    
 
   <div class="col-lg-8 col-xl-12">
 <div class="card">
     <div class="card-body">
-
-
-
-
+                                    
+                                      
+                                         
+                                           
 
     <!-- end timeline content-->
 
@@ -44,7 +44,7 @@
 
             <div class="row">
 
-
+ 
     <div class="col-md-6">
         <div class="mb-3">
             <label for="firstname" class="form-label">Employee Name</label>
@@ -95,7 +95,7 @@
       <div class="col-md-6">
         <div class="mb-3">
             <label for="firstname" class="form-label">Employee Experience    </label>
-            <select name="experience" class="form-select @error('experience') is-invalid @enderror" id="example-select">
+           <select name="experience" class="form-select @error('experience') is-invalid @enderror" id="example-select">
                     <option selected disabled >Select Year </option>
                     <option value="1 Year">1 Year</option>
                     <option value="2 Year">2 Year</option>
@@ -103,9 +103,10 @@
                     <option value="4 Year">4 Year</option>
                     <option value="5 Year">5 Year</option>
                 </select>
-                @error('experience')
+                 @error('experience')
       <span class="text-danger"> {{ $message }} </span>
             @enderror
+         
         </div>
     </div>
 
@@ -166,17 +167,17 @@
 
 
             </div> <!-- end row -->
-
-
-
+ 
+        
+            
             <div class="text-end">
                 <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Save</button>
             </div>
         </form>
     </div>
     <!-- end settings content-->
-
-
+    
+                                       
                                     </div>
                                 </div> <!-- end card-->
 
@@ -201,6 +202,7 @@
 			reader.readAsDataURL(e.target.files['0']);
 		});
 	});
+
 </script>
 
 

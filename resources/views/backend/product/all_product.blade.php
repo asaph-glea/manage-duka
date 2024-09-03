@@ -12,9 +12,15 @@
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
+                                            @if(Auth::user()->can('product.import'))
                                             <a href="{{ route('import.product') }}" class="btn btn-info rounded-pill waves-effect waves-light">Import </a>&nbsp;&nbsp;&nbsp;
+                                              @endif
+                                            @if(Auth::user()->can('product.export'))
                                             <a href="{{ route('export') }}" class="btn btn-danger rounded-pill waves-effect waves-light">Export </a> &nbsp;&nbsp;&nbsp; 
+                                              @endif
+                                            @if(Auth::user()->can('product.add'))
                                             <a href="{{ route('add.product') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Product </a>  
+                                              @endif
                                         </ol>
                                     </div>
                                     <h4 class="page-title">All Product</h4>
@@ -55,9 +61,15 @@
                 <td>{{ $item->product_code }}</td>
                 <td>{{ $item->selling_price }}</td>
                 <td>
+                    @if(Auth::user()->can('product.edit'))
                     <a href="{{ route('edit.product',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                    @endif
+                    @if(Auth::user()->can('product.barcode'))
                     <a href="{{ route('barcode.product',$item->id) }}" class="btn btn-info rounded-pill waves-effect waves-light">Code</a>
+                    @endif
+                    @if(Auth::user()->can('product.delete'))
                     <a href="{{ route('delete.product',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
+                    @endif
                 </td>
             </tr>
             @endforeach

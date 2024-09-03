@@ -5,7 +5,7 @@
 
                     <!-- Start Content-->
                     <div class="container-fluid">
-
+                        
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
@@ -25,8 +25,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-
-
+                     
+                    
                     <table id="basic-datatable" class="table dt-responsive nowrap w-100">
                         <thead>
                             <tr>
@@ -35,16 +35,23 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-
-
+                    
+    
         <tbody>
         	@foreach($allData as $key=> $item)
             <tr>
                 <td>{{ $key+1 }}</td> 
                 <td>{{ date('Y-m-d', strtotime($item->date))  }}</td>
                 <td>
-          <a href=" {{ route('employee.attend.edit',$item->date) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
-          <a href=" {{ route('employee.attend.view',$item->date) }}" class="btn btn-danger rounded-pill waves-effect waves-light" >View</a>
+
+                @if(Auth::user()->can('attendence.edit'))
+                <a href="{{ route('employee.attend.edit',$item->date) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                @endif
+
+                @if(Auth::user()->can('attendence.delete'))
+                <a href="{{ route('employee.attend.view',$item->date) }}" class="btn btn-danger rounded-pill waves-effect waves-light" >View</a>
+                @endif
+
                 </td>
             </tr>
             @endforeach
@@ -58,8 +65,8 @@
     <!-- end row-->
 
 
-
-
+                      
+                        
                     </div> <!-- container -->
 
                 </div> <!-- content -->

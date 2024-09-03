@@ -52,8 +52,14 @@
                                 <td>{{$item->phone}}</td>
                                 <td>{{$item->shopname}}</td>
                             <td>
+                                 @if(Auth::user()->can('customer.edit'))
                             <a href="{{ route('edit.customer',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                                 @endif
+
+                              @if(Auth::user()->can('customer.delete'))
                               <a href="{{ route('delete.customer',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a></td>
+                                 @endif
+
                             </tr>
                             @endforeach
                         </tbody>

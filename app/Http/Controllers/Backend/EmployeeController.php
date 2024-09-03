@@ -33,6 +33,7 @@ class EmployeeController extends Controller
             'salary' => 'required|max:200',
             'vacation' => 'required|max:200', 
             'experience' => 'required', 
+            'image' => 'required',  
         ],
 
         [

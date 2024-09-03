@@ -50,16 +50,21 @@
                 <td>{{ $item->month }}</td>
                 <td>{{ $item['employee']['salary'] }}</td>
                 <td>
-                @if($item->advance_salary == NULL )
-                    <p>No Advance</p>
-                @else
-                {{ $item->advance_salary }}
+                    @if($item['advance']['advance_salary'] == NULL )
+                        <p>No Advance</p>
+                    @else
+                    {{ $item['advance']['advance_salary'] }}
+                    @endif
+
+                 </td>
+                <td>
+                @if(Auth::user()->can('salary.edit'))
+                <a href="{{ route('edit.advance.salary',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                @endif
+                @if(Auth::user()->can('salary.delete'))
+                <a href="{{ route('delete.advance.salary',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
                 @endif
 
-                </td>
-                <td>
-<a href="{{ route('edit.advance.salary',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
-<a href="{{ route('delete.advance.salary',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
 
                 </td>
             </tr>

@@ -66,7 +66,10 @@
 
                  </td>
                 <td>
+                @if(Auth::user()->can('salary.paynow'))
                 <a href="{{ route('pay.now.salary',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Pay Now</a>
+                @endif
+
                 </td>
          
             </tr>

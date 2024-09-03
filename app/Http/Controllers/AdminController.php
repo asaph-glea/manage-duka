@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use File;
+use Illuminate\Support\Facades\Storage;
+
 
 class AdminController extends Controller
 {
@@ -103,6 +108,135 @@ class AdminController extends Controller
             return back()->with($notification);
 
     }// End Method 
+
+    ///////Admin User All Method ////////
+
+    public function AllAdmin(){
+
+        $alladminuser = User::latest()->get();
+        return view('backend.admin.all_admin', compact('alladminuser'));
+    }
+
+    public function AddAdmin(){
+
+        $roles = Role::all();
+        return view('backend.admin.add_admin',compact('roles'));
+    }// End Method 
+
+    public function StoreAdmin(Request $request){
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        if ($request->roles) {
+            $user->assignRole($request->roles);
+        }
+
+        $notification = array(
+            'message' => 'New Admin User Created Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.admin')->with($notification);  
+
+    }// End Method 
+
+    public function EditAdmin($id){
+
+        $roles = Role::all();
+        $adminuser = User::findOrFail($id);
+        return view('backend.admin.edit_admin',compact('roles','adminuser'));
+
+    }// End Method 
+
+
+    public function UpdateAdmin(Request $request){
+
+        $admin_id = $request->id;
+
+        $user = User::findOrFail($admin_id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone; 
+        $user->save();
+
+        $user->roles()->detach();
+        if ($request->roles) {
+            $user->assignRole($request->roles);
+        }
+
+        $notification = array(
+            'message' => 'Admin User Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.admin')->with($notification);  
+
+    }// End Method 
+
+
+
+    public function DeleteAdmin($id){
+
+        $user = User::findOrFail($id);
+        if (!is_null($user)) {
+            $user->delete();
+        }
+
+        $notification = array(
+            'message' => 'Admin User Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification); 
+
+    }// End Method 
+
+    public function DatabaseBackup(){
+
+        return view('admin.db_backup')->with('files',File::allFiles(storage_path('\app\CypressIq')));
+
+    }// End Method 
+    
+    public function BackupNow(){
+        \Artisan::call('backup:run');
+
+          $notification = array(
+            'message' => 'Database Backup Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
+
+    }// End Method 
+
+
+    public function DownloadDatabase($getFilename){
+
+        $path = storage_path('app\CypressIq/'.$getFilename);
+        return response()->download($path);
+
+    }// End Method 
+    public function DeleteDatabase($getFilename){
+
+        Storage::delete('CypressIq/'.$getFilename);
+
+         $notification = array(
+            'message' => 'Database Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
+
+    }// End Method 
+
+
 
 
 }
